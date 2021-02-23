@@ -1,7 +1,10 @@
 import React from 'react';
+import calendar from "./components/calendar/calendar";
+import journal from "./components/journal/journal";
 import './App.css';
 
 function App() {
+
   return (
     <div className="App">
      <p>Nothing yet.
