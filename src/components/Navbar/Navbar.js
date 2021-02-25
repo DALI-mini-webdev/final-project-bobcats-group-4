@@ -1,11 +1,11 @@
 /*used React Navbar Tutorial on youtube for this code*/
 
-import React, { Compoent, Component } from 'react';
+import React, { Component } from 'react';
 import { MenuItems } from "./MenuItems";
 import './Navbar.css';
 
 class Navbar extends Component {
-    state = { clicked: false}
+    state = { clicked: false }
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
@@ -37,4 +37,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default Navbar;
