@@ -8,14 +8,7 @@ function App() {
 
   return (
     <div className="App">
-     <p>Nothing yet.
      <Navbar />
-     Add firestore
-     Add journal 
-     Add calendar
-     Add buttons and input
-     Maybe link to an API for a random fact of the day later?
-     </p>
     </div>
   );
 }
