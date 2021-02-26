@@ -1,0 +1,19 @@
+.background-purple {
+    background-color: rgb(200, 116, 221);
+  }
+  
+  .black-text{
+    color:black;
+  }
+
+  div.a{
+      text-align: center;
+  }
+  
+  body{
+    font-family: 'Times New Roman';
+  }
+
+  .distance{
+      margin-right:150px;
+  }
