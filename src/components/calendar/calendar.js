@@ -2,6 +2,8 @@ import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import './calendar.css';
+import EventPost from './Eventpost'
+import firebase from './firebase/index'
 //import View Calendar, import firebase
 
 class calendar extends Component {
@@ -21,9 +23,22 @@ class calendar extends Component {
         this.setState({events: this.state.events.delete(id, field)})
     }
 
-    save = (id, field) => {
-        this.setState({events: this.state.eventDescription.update(id, (n) => { return Object.assign({}, n, field)})})
-    }
+    saveEvent = () => {
+        console.log("savebutton")
+        firebase.db.collection('Event').add({
+            name: this.state.eventName,
+            date: this.state.eventDate,
+            description: this.state.eventDescription,
+            id: this.state.eventID
+        }).then(ref => {
+            console.log('document reference id', ref.id);
+            this.setState({
+                id: this.state.id + 1
+            })
+        }).catch((e) => {
+            console.log(e);
+        })
+    };
 
     neweventNameFunction = (event) => {
         this.setState({ eventName: event.target.value });
@@ -37,10 +52,38 @@ class calendar extends Component {
         this.setState({ eventDescription: event.target.value });
     }
 
-    //add firebase stuff here: saveEventInfo, fetchEvents
+    fetchEvents = () => {
+        console.log("fetchbutton")
+        const eventList = [];
+        firebase.db.collection('Event').get()
+            .then(query => {
+                query.forEach(doc => {
+                    console.log(doc.data());
+                    eventList.push(doc.data());
+                })
+            })
+            .then(() => {
+                this.setState({
+                    allEvents: eventList
+                }).catch((e) => {
+                    console.log(e);
+                })
+            })
+      }
 
-//add View Calendar Button and Delete Button and Save Button to below
+//added firebase view and add event functions
+//still to-do: add "time" field since right now we just have date
+//idea: use a package to do a drop-down date thing. I will look into this and try to find a package for this purpose
 render() {
+    const allEvents = this.state.allEvents.map((Event) => {
+        return (
+            <EventPost
+                name={Event.name}
+                date={Event.date}
+                description={Event.description}
+            />
+        )
+    })
     return (
         <div>
 
@@ -57,9 +100,15 @@ render() {
           
             <p> Event Description: </p>
             <input type="text" value={this.state.eventDescription} onChange={this.neweventDescriptionFunction} />
-        </div>
 
+            <button onClick={this.saveEvent}>Save</button>
         </div>
+        <div className='allEvents'>
+                    <button onClick={this.fetchEvents}>View Events</button>
+                    {allEvents}
+        </div>
+        </div>
+        
         );
     }
 }
