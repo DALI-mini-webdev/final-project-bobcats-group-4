@@ -1,19 +1,20 @@
 import React from 'react';
 import './App.css';
+import JournalBoard from './components/JournalBoard';
+import firebase from './firebase/index';
+
 
 function App() {
-  return (
-    <div className="App">
-     <p>Nothing yet.
-     Add navbar
-     Add firestore
-     Add journal 
-     Add calendar
-     Add buttons and input
-     Maybe link to an API for a random fact of the day later?
-     </p>
-    </div>
-  );
+  console.log(firebase);
+  console.log(firebase.db);
+    return (
+      <div className = "App">
+        <JournalBoard/>
+        
+      </div>
+    
+
+    );
 }
 
 export default App;
