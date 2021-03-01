@@ -1,0 +1,19 @@
+.background-green {
+    background-color: rgb(107, 212, 86);
+  }
+  
+  .white-text{
+    color:white;
+  }
+
+  div.a{
+      text-align: center;
+  }
+  
+  body{
+    font-family: 'Times New Roman';
+  }
+
+  .distance{
+      margin-right:220px;
+  }
