@@ -1,16 +1,20 @@
 import React from 'react';
 import Calendar from "./components/calendar/calendar";
 import journal from "./components/journal/journal";
+import Navbar from "./components/Navbar/Navbar";
 import './App.css';
-import firebase from 'firebase'
+import JournalBoard from './components/JournalBoard';
+// import firebase from './firebase/index';
+// import firebase from 'firebase'
 
 function App() {
-    console.log(firebase);
-    console.log(firebase.db);
+//     console.log(firebase);
+//     console.log(firebase.db);
   return (
     <div className="App">
+        <Navbar />
+        <JournalBoard/>
        <Calendar />
-       <p test />
     </div>
   )
 }
