@@ -2,8 +2,10 @@ import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import './calendar.css';
-import EventPost from './Eventpost'
-import firebase from './firebase/index'
+import EventPost from './Eventpost';
+import firebase from './firebase/index';
+import Calendar from 'react-calendar';
+//import 'react-calendar/dist/Calendar.css';
 //import View Calendar, import firebase
 
 class calendar extends Component {
@@ -48,6 +50,7 @@ class calendar extends Component {
         this.setState({ eventDate: event.target.value });
     }
 
+
     neweventDescriptionFunction = (event) => {
         this.setState({ eventDescription: event.target.value });
     }
@@ -85,6 +88,7 @@ render() {
         )
     })
     return (
+        <body>
         <div>
 
         <div>
@@ -97,7 +101,8 @@ render() {
 
             <p> Date of Event: </p>
             <input type="text" value={this.state.eventDate} onChange={this.neweventDateFunction} />
-          
+            <Calendar />
+
             <p> Event Description: </p>
             <input type="text" value={this.state.eventDescription} onChange={this.neweventDescriptionFunction} />
 
@@ -108,6 +113,7 @@ render() {
                     {allEvents}
         </div>
         </div>
+        </body>
         
         );
     }
